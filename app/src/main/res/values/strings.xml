@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Practice</string>
+    <string name="text">Текст</string>
+    <string name="title">Название</string>
+    <string name="save">Сохранить</string>
+    <string name="button">Button_save</string>
+</resources>
