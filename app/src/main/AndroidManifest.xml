@@ -13,7 +13,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".view.ViewEdit"
+            android:name=".view.ViewEditImpl"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
