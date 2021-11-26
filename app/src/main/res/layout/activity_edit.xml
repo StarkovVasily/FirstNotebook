@@ -1,57 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/Widget.MaterialComponents.ActionBar.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#FFFFFF"
-        android:orientation="vertical"
-        tools:context=".MainActivity">
+        android:background="@color/green_200"
+        app:menu="@menu/toolbar_btns" />
 
-        <EditText
-            android:id="@+id/editTitle"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/all_margin"
-            android:background="@android:color/transparent"
-            android:hint="@string/title"
-            android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:minHeight="@dimen/minH_ttl_btn"
-            android:textSize="@dimen/ttl_size"
-            tools:ignore="TextContrastCheck" />
+            android:backgroundTint="#FFFFFF"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
 
-        <EditText
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/all_margin"
-            android:background="@android:color/transparent"
-            android:gravity="start|top"
-            android:hint="@string/text"
-            android:importantForAutofill="no"
-            android:inputType="textMultiLine"
-            android:minHeight="@dimen/minH_txt"
-            android:textSize="@dimen/txt_size"
-            tools:ignore="TextContrastCheck" />
+            <EditText
+                android:id="@+id/editTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/all_margin"
+                android:background="@android:color/transparent"
+                android:hint="@string/title"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/minH_ttl_btn"
+                android:textSize="@dimen/ttl_size"
+                tools:ignore="TextContrastCheck" />
 
-        <Button
-            android:id="@+id/buttonSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/all_margin"
-            android:backgroundTint="@color/teal_700"
-            android:contentDescription="@string/button"
-            android:minHeight="@dimen/minH_ttl_btn"
-            android:text="@string/save"
-            android:textColor="@color/white"
-            android:textSize="@dimen/btn_text_size"
-            tools:ignore="TextContrastCheck" />
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/all_margin"
+                android:background="@android:color/transparent"
+                android:gravity="start"
+                android:hint="@string/text"
+                android:importantForAutofill="no"
+                android:inputType="textMultiLine"
+                android:minHeight="@dimen/minH_txt"
+                android:textSize="@dimen/txt_size"
+                tools:ignore="TextContrastCheck" />
 
-    </LinearLayout>
-</ScrollView>
-
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -9,4 +9,18 @@ class PresenterEditImpl(var view: ViewEdit?) : PresenterEdit {
         else
             view?.messaging("Заметка $title сохранена")
     }
+
+    override fun shareNote(title: String, text: String) {
+        val note=if(title.isEmpty()) text
+        else "${title}\n${text}"
+        view?.share(note)
+    }
+
+    override fun titleToMain(title: String,text: String) {
+        if (title.isEmpty())
+            view?.toMain(text)
+
+        else
+            view?.toMain(title)
+    }
 }
