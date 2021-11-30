@@ -8,6 +8,7 @@ import com.example.practice.R
 import com.example.practice.databinding.ActivityEditBinding
 import com.example.practice.presenter.PresenterEditImpl
 import android.content.Intent
+import com.example.practice.Constant.TITLE_KEY
 import com.example.practice.MainActivity
 
 
@@ -34,10 +35,10 @@ class ViewEditImpl : AppCompatActivity(), ViewEdit {
         })
     }
 
-    override fun toMain(title: String) = with(binding) {
+    override fun toMain(title: String) = run {
         startActivity(
             Intent(this@ViewEditImpl, MainActivity::class.java)
-                .putExtra("title", title)
+                .putExtra(TITLE_KEY, title)
         )
     }
 
@@ -45,8 +46,10 @@ class ViewEditImpl : AppCompatActivity(), ViewEdit {
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.save_btn -> {
-                    presenter?.saveNote(editTitle.text.toString(), editText.text.toString())
-                    presenter?.titleToMain(editTitle.text.toString(), editText.text.toString())
+                    presenter?.apply {
+                        saveNote(editTitle.text.toString(), editText.text.toString())
+                        titleToMain(editTitle.text.toString(), editText.text.toString())
+                    }
                     true
                 }
                 R.id.share_btn -> {

@@ -11,15 +11,14 @@ class PresenterEditImpl(var view: ViewEdit?) : PresenterEdit {
     }
 
     override fun shareNote(title: String, text: String) {
-        val note=if(title.isEmpty()) text
+        val note = if (title.isEmpty()) text
         else "${title}\n${text}"
         view?.share(note)
     }
 
-    override fun titleToMain(title: String,text: String) {
+    override fun titleToMain(title: String, text: String) {
         if (title.isEmpty())
             view?.toMain(text)
-
         else
             view?.toMain(title)
     }
