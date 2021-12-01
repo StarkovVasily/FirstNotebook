@@ -13,7 +13,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".view.ViewEditImpl"
+            android:name=".view.EditNoteActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

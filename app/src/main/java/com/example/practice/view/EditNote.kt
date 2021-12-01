@@ -1,6 +1,6 @@
 package com.example.practice.view
 
-interface ViewEdit {
+interface EditNote {
     fun messaging(message: String)
     fun share(note: String)
     fun toMain(title: String)

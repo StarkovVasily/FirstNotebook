@@ -1,8 +1,8 @@
 package com.example.practice.presenter
 
-import com.example.practice.view.ViewEdit
+import com.example.practice.view.EditNote
 
-class PresenterEditImpl(var view: ViewEdit?) : PresenterEdit {
+class PresenterEditImpl(var view: EditNote?) : PresenterEdit {
     override fun saveNote(title: String, text: String) {
         if (text.isEmpty())
             view?.messaging("Заметка $title пуста")

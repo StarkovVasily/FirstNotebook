@@ -8,11 +8,11 @@ import com.example.practice.R
 import com.example.practice.databinding.ActivityEditBinding
 import com.example.practice.presenter.PresenterEditImpl
 import android.content.Intent
-import com.example.practice.Constant.TITLE_KEY
 import com.example.practice.MainActivity
+import com.example.practice.MainActivity.Constant.TITLE_KEY
 
 
-class ViewEditImpl : AppCompatActivity(), ViewEdit {
+class EditNoteActivity : AppCompatActivity(), EditNote {
     private lateinit var binding: ActivityEditBinding
     private var presenter: PresenterEditImpl? = null
 
@@ -37,7 +37,7 @@ class ViewEditImpl : AppCompatActivity(), ViewEdit {
 
     override fun toMain(title: String) = run {
         startActivity(
-            Intent(this@ViewEditImpl, MainActivity::class.java)
+            Intent(this@EditNoteActivity, MainActivity::class.java)
                 .putExtra(TITLE_KEY, title)
         )
     }

@@ -2,7 +2,6 @@ package com.example.practice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.practice.Constant.TITLE_KEY
 import com.example.practice.databinding.ActivityMainBinding
 
 
@@ -29,5 +28,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun getTitleFromEdit() = with(binding) {
         mainTextView.text = intent.getStringExtra(TITLE_KEY)
+    }
+
+    companion object Constant {
+        const val TITLE_KEY = "title"
     }
 }
