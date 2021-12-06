@@ -4,12 +4,11 @@ import android.os.Bundle
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.practice.R
 import com.example.practice.databinding.ActivityEditBinding
 import com.example.practice.presenter.PresenterEditImpl
 import android.content.Intent
-import com.example.practice.MainActivity
-import com.example.practice.MainActivity.Constant.TITLE_KEY
+import com.example.practice.R
+
 
 
 class EditNoteActivity : AppCompatActivity(), EditNote {
@@ -35,21 +34,12 @@ class EditNoteActivity : AppCompatActivity(), EditNote {
         })
     }
 
-    override fun toMain(title: String) = run {
-        startActivity(
-            Intent(this@EditNoteActivity, MainActivity::class.java)
-                .putExtra(TITLE_KEY, title)
-        )
-    }
-
     private fun toolbarAction() = with(binding) {
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.save_btn -> {
-                    presenter?.apply {
-                        saveNote(editTitle.text.toString(), editText.text.toString())
-                        titleToMain(editTitle.text.toString(), editText.text.toString())
-                    }
+                    presenter?.saveNote(editTitle.text.toString(), editText.text.toString())
+                    startActivity(Intent(this@EditNoteActivity,MainActivity::class.java))
                     true
                 }
                 R.id.share_btn -> {

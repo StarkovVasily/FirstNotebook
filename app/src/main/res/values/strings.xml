@@ -4,4 +4,6 @@
     <string name="title">Название</string>
     <string name="save_btn">Сохранить</string>
     <string name="share_btn">Поделиться</string>
+    <string name="add_button">Добавить заметку</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

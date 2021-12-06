@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
             android:orientation="vertical"
-            tools:context=".MainActivity">
+            tools:context=".view.MainActivity">
 
             <EditText
                 android:id="@+id/editTitle"
