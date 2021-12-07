@@ -28,7 +28,7 @@ class FragmentInfo : Fragment() {
     ): View {
 
         if (arguments != null && arguments?.containsKey(TITLE_KEY) == true) {
-            item = arguments?.getSerializable(TITLE_KEY) as? NoteModel?
+            item = arguments?.getParcelable(TITLE_KEY) as? NoteModel?
         }
         binding = FragmentInfoBinding.inflate(inflater, container, false)
         return binding.root

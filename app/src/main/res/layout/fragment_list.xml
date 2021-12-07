@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/recycler_item"
-        tools:context=".fragments.list.FragmentList" />
+        tools:context=".fragments.list.ListFragment" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_add"

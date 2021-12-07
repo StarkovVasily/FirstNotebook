@@ -1,17 +1,14 @@
 package com.example.practice.view
 
-import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import com.example.practice.R
 import com.example.practice.databinding.ActivityMainBinding
-import com.example.practice.fragments.info.FragmentInfo
-import com.example.practice.fragments.list.FragmentList
+import com.example.practice.fragments.list.ListFragment
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OpenFragment {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         toolbar()
-        openFrag(FragmentList.newInstance())
+        openFrag(ListFragment.newInstance())
     }
 
     private fun toolbar() = with(binding) {
@@ -32,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun openFrag(f: Fragment) {
+    override fun openFrag(f: Fragment) {
         supportFragmentManager
             .beginTransaction()
             .addToBackStack(null)
@@ -40,8 +37,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    companion object Constant{
+    companion object Constant {
         const val TITLE_KEY = "title"
-        const val DATE_FORMAT = "dd.M.yyyy"
     }
 }

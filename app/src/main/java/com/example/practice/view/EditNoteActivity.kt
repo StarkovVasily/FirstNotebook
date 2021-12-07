@@ -10,7 +10,6 @@ import android.content.Intent
 import com.example.practice.R
 
 
-
 class EditNoteActivity : AppCompatActivity(), EditNote {
     private lateinit var binding: ActivityEditBinding
     private var presenter: PresenterEditImpl? = null
@@ -39,7 +38,7 @@ class EditNoteActivity : AppCompatActivity(), EditNote {
             when (it.itemId) {
                 R.id.save_btn -> {
                     presenter?.saveNote(editTitle.text.toString(), editText.text.toString())
-                    startActivity(Intent(this@EditNoteActivity,MainActivity::class.java))
+                    startActivity(Intent(this@EditNoteActivity, MainActivity::class.java))
                     true
                 }
                 R.id.share_btn -> {

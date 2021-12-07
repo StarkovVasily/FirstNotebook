@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import com.example.practice.databinding.FragmentListBinding
 import com.example.practice.presenter.MainPresenterImpl
 import com.example.practice.view.EditNoteActivity
-import com.example.practice.view.MainActivity
+import com.example.practice.view.OpenFragment
 
 
-class FragmentList : Fragment() {
+class ListFragment : Fragment() {
     private lateinit var binding: FragmentListBinding
 
     override fun onCreateView(
@@ -27,8 +27,8 @@ class FragmentList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             val presenter = MainPresenterImpl()
-            recycler.adapter = AdapterList(presenter.noteData(), activity as? MainActivity)
-            buttonAdd.setOnClickListener{
+            recycler.adapter = ListAdapter(presenter.noteData(), activity as? OpenFragment)
+            buttonAdd.setOnClickListener {
                 requireActivity()
                     .startActivity((Intent(activity?.baseContext, EditNoteActivity::class.java)))
             }
@@ -37,6 +37,6 @@ class FragmentList : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = FragmentList()
+        fun newInstance() = ListFragment()
     }
 }

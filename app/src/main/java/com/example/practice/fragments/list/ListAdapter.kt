@@ -9,12 +9,12 @@ import com.example.practice.NoteModel
 import com.example.practice.R
 import com.example.practice.databinding.RecyclerItemBinding
 import com.example.practice.fragments.info.FragmentInfo
-import com.example.practice.view.MainActivity
 import com.example.practice.view.MainActivity.Constant.TITLE_KEY
+import com.example.practice.view.OpenFragment
 
 
-class AdapterList(private val list: ArrayList<NoteModel>, private var activity: MainActivity?) :
-    RecyclerView.Adapter<AdapterList.ViewHolderList>() {
+class ListAdapter(private val list: ArrayList<NoteModel>, private var activity: OpenFragment?) :
+    RecyclerView.Adapter<ListAdapter.ViewHolderList>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderList {
         return ViewHolderList(
@@ -34,13 +34,10 @@ class AdapterList(private val list: ArrayList<NoteModel>, private var activity: 
         private val binding = RecyclerItemBinding.bind(item)
 
         fun bind(item: NoteModel) = with(binding) {
-            if (item.title.isEmpty())
-                recyclerTitle.text=item.text
-            else
-                recyclerTitle.text = item.title
+            recyclerTitle.text = if (item.title!!.isEmpty()) item.text else item.title
             cardList.setOnClickListener {
                 val bundle = Bundle().apply {
-                    putSerializable(TITLE_KEY, item)
+                    putParcelable(TITLE_KEY, item)
                 }
                 val fragManage = FragmentInfo.newInstance()
                 fragManage.arguments = bundle

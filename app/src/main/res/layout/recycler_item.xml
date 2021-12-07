@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/green_200"
-    app:cardCornerRadius="7dp"
-    app:cardElevation="5dp"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_pad_elevation"
     app:cardUseCompatPadding="true"
-    app:contentPadding="5dp">
+    app:contentPadding="@dimen/card_pad_elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
