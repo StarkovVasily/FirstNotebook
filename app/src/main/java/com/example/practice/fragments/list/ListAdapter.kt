@@ -1,6 +1,6 @@
 package com.example.practice.fragments.list
 
-import android.os.Bundle
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.practice.NoteModel
 import com.example.practice.R
 import com.example.practice.databinding.RecyclerItemBinding
-import com.example.practice.fragments.info.FragmentInfo
-import com.example.practice.view.MainActivity.Constant.TITLE_KEY
-import com.example.practice.view.OpenFragment
+import com.example.practice.model.ListModel.notes
+import com.example.practice.presenter.MainPresenterImpl
 
 
-class ListAdapter(private val list: ArrayList<NoteModel>, private var activity: OpenFragment?) :
+class ListAdapter(private val onClick: ((NoteModel) -> Unit)) :
     RecyclerView.Adapter<ListAdapter.ViewHolderList>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderList {
@@ -25,23 +24,18 @@ class ListAdapter(private val list: ArrayList<NoteModel>, private var activity: 
     }
 
     override fun onBindViewHolder(holder: ViewHolderList, position: Int) {
-        holder.bind(list[position])
+        holder.bind(notes[position])
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = notes.size
 
     inner class ViewHolderList(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = RecyclerItemBinding.bind(item)
 
         fun bind(item: NoteModel) = with(binding) {
-            recyclerTitle.text = if (item.title!!.isEmpty()) item.text else item.title
+            recyclerTitle.text = if (item.title.isEmpty()) item.text else item.title
             cardList.setOnClickListener {
-                val bundle = Bundle().apply {
-                    putParcelable(TITLE_KEY, item)
-                }
-                val fragManage = FragmentInfo.newInstance()
-                fragManage.arguments = bundle
-                activity?.openFrag(fragManage)
+                onClick(item)
             }
         }
     }

@@ -10,6 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practice">
         <activity
+            android:name=".view.AboutActivity"
+            android:exported="false"
+            android:label="@string/title_activity_about"
+            android:theme="@style/Theme.Practice.NoActionBar" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
@@ -20,7 +25,7 @@
         </activity>
         <activity
             android:name=".view.EditNoteActivity"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>

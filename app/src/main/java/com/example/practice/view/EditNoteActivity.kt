@@ -34,6 +34,10 @@ class EditNoteActivity : AppCompatActivity(), EditNote {
     }
 
     private fun toolbarAction() = with(binding) {
+        toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_white_36)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.save_btn -> {
