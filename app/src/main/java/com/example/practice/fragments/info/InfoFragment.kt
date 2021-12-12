@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.practice.NoteModel
-import com.example.practice.R
 import com.example.practice.databinding.FragmentInfoBinding
 import com.example.practice.presenter.MainPresenterImpl
 import com.example.practice.view.MainActivity.Constant.TITLE_KEY
@@ -40,18 +39,11 @@ class InfoFragment : Fragment() {
 
     private fun toolbar() = with(binding) {
         presenter = MainPresenterImpl(requireActivity() as? MainView)
-        frag2Toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.save_btn -> {
-                    presenter.saveFromFrag2(frag2Title.text.toString(), frag2Text.text.toString())
-                    true
-                }
-                R.id.share_btn -> {
-                    presenter.shareFromFrag2(frag2Title.text.toString(), frag2Text.text.toString())
-                    true
-                }
-                else -> false
-            }
+        saveBtn.setOnClickListener {
+            presenter.saveFromFrag2(frag2Title.text.toString(), frag2Text.text.toString())
+        }
+        shareBtn.setOnClickListener {
+            presenter.shareFromFrag2(frag2Title.text.toString(), frag2Text.text.toString())
         }
     }
 

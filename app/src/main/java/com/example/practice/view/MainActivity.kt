@@ -22,25 +22,21 @@ class MainActivity : AppCompatActivity(), MainView {
         setContentView(binding.root)
         toolbar()
         openFrag(R.id.fragContainer, ListFragment.newInstance())
-        goToAbout()
     }
+
+//    private fun toolbar() = with(binding) {
+//        mainToolbar.setNavigationIcon(R.drawable.baseline_arrow_back_white_36)
+//        mainToolbar.setNavigationOnClickListener {
+//            finish()
+//        }
+//    }
 
     private fun toolbar() = with(binding) {
-        mainToolbar.setNavigationIcon(R.drawable.baseline_arrow_back_white_36)
-        mainToolbar.setNavigationOnClickListener {
-            onBackPressed()
+        backBtnMain.setOnClickListener {
+            finish()
         }
-    }
-
-    private fun goToAbout() = with(binding) {
-        mainToolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.go_to_edit -> {
-                    startActivity(Intent(this@MainActivity, AboutActivity::class.java))
-                    true
-                }
-                else -> false
-            }
+        goToAbout.setOnClickListener {
+            startActivity(Intent(this@MainActivity, AboutActivity::class.java))
         }
     }
 

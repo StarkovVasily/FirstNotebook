@@ -7,4 +7,5 @@
     <string name="add_button">Добавить заметку</string>
     <string name="go_to_edit_btn">Открыть активити редактирования</string>
     <string name="title_activity_about">AboutActivity</string>
+    <string name="back">Назад</string>
 </resources>

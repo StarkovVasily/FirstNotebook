@@ -6,13 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".view.AboutActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/about_toolbar"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/Widget.MaterialComponents.ActionBar.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green_200"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/back_btn_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/green_200"
+                android:src="@drawable/baseline_arrow_back_white_36"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <ImageView
         android:id="@+id/imageView"
@@ -20,5 +39,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/doggo" />
+        app:srcCompat="@drawable/doggo"
+        tools:ignore="ContentDescription"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

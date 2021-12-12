@@ -1,13 +1,12 @@
 package com.example.practice.view
 
-import android.os.Bundle
 
+import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.practice.databinding.ActivityEditBinding
 import com.example.practice.presenter.PresenterEditImpl
 import android.content.Intent
-import com.example.practice.R
 
 
 class EditNoteActivity : AppCompatActivity(), EditNote {
@@ -34,23 +33,14 @@ class EditNoteActivity : AppCompatActivity(), EditNote {
     }
 
     private fun toolbarAction() = with(binding) {
-        toolbar.setNavigationIcon(R.drawable.baseline_arrow_back_white_36)
-        toolbar.setNavigationOnClickListener {
-            onBackPressed()
+        saveBtn.setOnClickListener {
+            presenter?.saveNote(editTitle.text.toString(), editText.text.toString())
         }
-        toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.save_btn -> {
-                    presenter?.saveNote(editTitle.text.toString(), editText.text.toString())
-                    startActivity(Intent(this@EditNoteActivity, MainActivity::class.java))
-                    true
-                }
-                R.id.share_btn -> {
-                    presenter?.shareNote(editTitle.text.toString(), editText.text.toString())
-                    true
-                }
-                else -> false
-            }
+        shareBtn.setOnClickListener {
+            presenter?.shareNote(editTitle.text.toString(), editText.text.toString())
+        }
+        backBtn.setOnClickListener {
+            onBackPressed()
         }
     }
 
