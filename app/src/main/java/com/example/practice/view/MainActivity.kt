@@ -24,16 +24,9 @@ class MainActivity : AppCompatActivity(), MainView {
         openFrag(R.id.fragContainer, ListFragment.newInstance())
     }
 
-//    private fun toolbar() = with(binding) {
-//        mainToolbar.setNavigationIcon(R.drawable.baseline_arrow_back_white_36)
-//        mainToolbar.setNavigationOnClickListener {
-//            finish()
-//        }
-//    }
-
     private fun toolbar() = with(binding) {
         backBtnMain.setOnClickListener {
-            finish()
+            onBackPressed()
         }
         goToAbout.setOnClickListener {
             startActivity(Intent(this@MainActivity, AboutActivity::class.java))
@@ -43,7 +36,6 @@ class MainActivity : AppCompatActivity(), MainView {
     override fun openFrag(id: Int, f: Fragment) {
         supportFragmentManager
             .beginTransaction()
-            .addToBackStack(null)
             .replace(id, f)
             .commit()
     }
@@ -54,7 +46,11 @@ class MainActivity : AppCompatActivity(), MainView {
         }
         val fragManage = InfoFragment.newInstance()
         fragManage.arguments = bundle
-        openFrag(R.id.frag2Container, fragManage)
+        supportFragmentManager
+            .beginTransaction()
+            .addToBackStack(null)
+            .replace(R.id.frag2Container, fragManage)
+            .commit()
     }
 
     override fun shareFromFrag2(note: String) {
