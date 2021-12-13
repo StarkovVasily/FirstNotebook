@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
+    <dimen name="all_margin">20dp</dimen>
+    <dimen name="minH_ttl_btn">50dp</dimen>
+    <dimen name="minH_txt">300dp</dimen>
+    <dimen name="ttl_size">26sp</dimen>
+    <dimen name="txt_size">22sp</dimen>
+    <dimen name="btn_text_size">16sp</dimen>
+    <dimen name="list_margin">5dp</dimen>
+    <dimen name="card_pad_elevation">5dp</dimen>
+    <dimen name="card_corner_radius">7dp</dimen>
+    <dimen name="toolbar_between">15dp</dimen>
 </resources>

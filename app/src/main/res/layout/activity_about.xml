@@ -3,14 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".view.AboutActivity">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/main_toolbar"
+        android:id="@+id/toolbar"
         style="@style/Widget.MaterialComponents.ActionBar.Primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green_200"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +20,7 @@
             android:layout_height="wrap_content">
 
             <ImageButton
-                android:id="@+id/back_btn_main"
+                android:id="@+id/back_btn_about"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/green_200"
@@ -28,37 +30,15 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
-            <ImageButton
-                android:id="@+id/go_to_about"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/green_200"
-                android:src="@drawable/baseline_open_in_new_white_36"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.MaterialToolbar>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragContainer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_toolbar" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/frag2Container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:srcCompat="@drawable/doggo"
+        tools:ignore="ContentDescription"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
