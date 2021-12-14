@@ -80,7 +80,6 @@
                 android:textSize="@dimen/txt_size"
                 app:layout_constraintTop_toBottomOf="@+id/frag2_text" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>
