@@ -1,5 +1,6 @@
 package com.example.practice.fragments.list
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +11,15 @@ import android.view.ViewGroup
 import com.example.practice.R
 import com.example.practice.databinding.FragmentListBinding
 import com.example.practice.fragments.info.InfoFragment
+import com.example.practice.model.NoteDatabase
 import com.example.practice.presenter.MainPresenterImpl
 import com.example.practice.view.EditNoteActivity
 import com.example.practice.view.MainActivity
 import com.example.practice.view.MainView
+import com.example.practice.view.ViewPagerActivity
 
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), MainView.View {
     private lateinit var binding: FragmentListBinding
     private lateinit var presenter: MainPresenterImpl
     private lateinit var adapter: ListAdapter
@@ -31,8 +34,11 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
-        presenter = MainPresenterImpl(requireActivity() as? MainView)
-        adapter = ListAdapter {
+        presenter = MainPresenterImpl(
+            requireActivity() as? MainView.Fragments?,
+            NoteDatabase.getInstance(requireContext())
+        )
+        adapter = ListAdapter(presenter.noteData()) {
             presenter.openFragment(it)
         }
         recycler.adapter = adapter
@@ -45,7 +51,20 @@ class ListFragment : Fragment() {
                     ))
                 )
         }
+        goToPager.setOnClickListener {
+            startActivity(Intent(activity?.baseContext, ViewPagerActivity::class.java))
+        }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        updateData()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun updateData() {
+        adapter.updateData(presenter.noteData())
+        adapter.notifyDataSetChanged()
     }
 
     companion object {

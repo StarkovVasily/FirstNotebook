@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.practice.NoteModel
 import com.example.practice.databinding.FragmentInfoBinding
+import com.example.practice.model.NoteDatabase
 import com.example.practice.presenter.MainPresenterImpl
 import com.example.practice.view.MainActivity.Constant.TITLE_KEY
 import com.example.practice.view.MainView
@@ -38,7 +39,10 @@ class InfoFragment : Fragment() {
     }
 
     private fun toolbar() = with(binding) {
-        presenter = MainPresenterImpl(requireActivity() as? MainView)
+        presenter = MainPresenterImpl(
+            requireActivity() as? MainView.Fragments,
+            NoteDatabase.getInstance(requireContext())
+        )
         saveBtn.setOnClickListener {
             presenter.saveFromFrag2(frag2Title.text.toString(), frag2Text.text.toString())
         }

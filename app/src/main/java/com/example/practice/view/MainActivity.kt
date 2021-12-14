@@ -12,7 +12,7 @@ import com.example.practice.fragments.info.InfoFragment
 import com.example.practice.fragments.list.ListFragment
 
 
-class MainActivity : AppCompatActivity(), MainView {
+class MainActivity : AppCompatActivity(), MainView.Fragments {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

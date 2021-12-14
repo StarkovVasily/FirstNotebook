@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.practice.databinding.ActivityEditBinding
 import com.example.practice.presenter.PresenterEditImpl
 import android.content.Intent
+import androidx.appcompat.app.AlertDialog
+import com.example.practice.R
+import com.example.practice.model.NoteDatabase
 
 
 class EditNoteActivity : AppCompatActivity(), EditNote {
@@ -34,7 +37,8 @@ class EditNoteActivity : AppCompatActivity(), EditNote {
 
     private fun toolbarAction() = with(binding) {
         saveBtn.setOnClickListener {
-            presenter?.saveNote(editTitle.text.toString(), editText.text.toString())
+//            presenter?.saveNote(editTitle.text.toString(), editText.text.toString())
+            showDialog(editTitle.text.toString(), editText.text.toString())
         }
         shareBtn.setOnClickListener {
             presenter?.shareNote(editTitle.text.toString(), editText.text.toString())
@@ -44,8 +48,22 @@ class EditNoteActivity : AppCompatActivity(), EditNote {
         }
     }
 
+    override fun showDialog(title: String, text: String) {
+        AlertDialog.Builder(this)
+            .setMessage(R.string.dialog_message)
+            .setPositiveButton(
+                R.string.positive
+            ) { _, _ ->
+                presenter?.saveNote(title, text)
+            }.setNegativeButton(R.string.negative) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .setCancelable(true)
+            .create().show()
+    }
+
     private fun initViews() {
-        presenter = PresenterEditImpl(this)
+        presenter = PresenterEditImpl(this, NoteDatabase.getInstance(this))
     }
 
     override fun onDestroy() {
