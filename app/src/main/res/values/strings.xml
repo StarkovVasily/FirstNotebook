@@ -2,6 +2,15 @@
     <string name="app_name">Practice</string>
     <string name="text">Текст</string>
     <string name="title">Название</string>
-    <string name="save">Сохранить</string>
-    <string name="button">Button_save</string>
+    <string name="save_btn">Сохранить</string>
+    <string name="share_btn">Поделиться</string>
+    <string name="add_button">Добавить заметку</string>
+    <string name="go_to_edit_btn">Открыть активити редактирования</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="back">Назад</string>
+    <string name="ViewPager">Pager</string>
+    <string name="saved">Заметка сохранена</string>
+    <string name="dialog_message">Сохранить заметку?</string>
+    <string name="positive">Да</string>
+    <string name="negative">Нет</string>
 </resources>
