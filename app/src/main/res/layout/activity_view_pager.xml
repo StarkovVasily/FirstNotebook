@@ -41,18 +41,18 @@
                 tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/share_btn"
+                android:id="@+id/share_btn_pager"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/toolbar_between"
                 android:background="@color/green_200"
                 android:src="@drawable/baseline_share_white_36"
-                app:layout_constraintEnd_toStartOf="@+id/save_btn"
+                app:layout_constraintEnd_toStartOf="@+id/save_btn_pager"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/save_btn"
+                android:id="@+id/save_btn_pager"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/green_200"

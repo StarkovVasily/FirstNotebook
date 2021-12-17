@@ -1,12 +1,14 @@
 package com.example.practice.model
 
+import android.util.Log
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.example.practice.NoteModel
 
 @Dao
-interface DAO {
+interface NoteDAO {
 
     @Query("SELECT * FROM notes")
     fun getNotes(): List<NoteModel>
@@ -14,4 +16,6 @@ interface DAO {
     @Insert
     fun insert(note: NoteModel)
 
+    @Update
+    fun updateNote(note: NoteModel)
 }

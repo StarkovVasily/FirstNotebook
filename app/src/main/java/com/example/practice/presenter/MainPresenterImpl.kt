@@ -1,7 +1,9 @@
 package com.example.practice.presenter
 
 
+
 import com.example.practice.NoteModel
+import com.example.practice.fragments.list.ListAdapter
 import com.example.practice.model.NoteDatabase
 import com.example.practice.view.MainView
 import java.util.*
@@ -14,13 +16,8 @@ class MainPresenterImpl(var item: MainView.Fragments?, private val db: NoteDatab
         item?.openInfoFragment(note)
     }
 
-    override fun saveFromFrag2(title: String, text: String) {
-        if (text.isEmpty())
-            item?.messagingFromFrag2("Заметка $title пуста")
-        else
-            item?.messagingFromFrag2("Заметка $title сохранена")
-        val date = Calendar.getInstance().time
-        db.noteDao().insert(NoteModel(title = title, text = text, date = date.toString()))
+    override fun saveFromFrag2(note: NoteModel) {
+        db.noteDao().updateNote(note)
     }
 
     override fun shareFromFrag2(title: String, text: String) {
@@ -28,4 +25,6 @@ class MainPresenterImpl(var item: MainView.Fragments?, private val db: NoteDatab
         else "${title}\n${text}"
         item?.shareFromFrag2(note)
     }
+
+
 }

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/infoFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -52,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
+            <EditText
                 android:id="@+id/frag2_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,7 +63,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <EditText
                 android:id="@+id/frag2_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -79,6 +80,7 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/txt_size"
                 app:layout_constraintTop_toBottomOf="@+id/frag2_text" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

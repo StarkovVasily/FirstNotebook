@@ -1,6 +1,8 @@
 package com.example.practice.presenter
 
+import android.util.Log
 import com.example.practice.NoteModel
+import com.example.practice.fragments.info.InfoFragment
 import com.example.practice.model.NoteDatabase
 import com.example.practice.view.ViewPagerView
 
@@ -9,7 +11,7 @@ class VPagerPresenterImpl(var item: ViewPagerView?, private val db: NoteDatabase
 
     override fun noteData(): List<NoteModel> = db.noteDao().getNotes()
 
-    override fun saveFromPager() {
-        item?.showMessage()
+    override fun saveFromPager(note: NoteModel) {
+        db.noteDao().updateNote(note)
     }
 }

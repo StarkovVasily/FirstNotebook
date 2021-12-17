@@ -22,6 +22,12 @@ class EditNoteActivity : AppCompatActivity(), EditNote {
         setContentView(binding.root)
         initViews()
         toolbarAction()
+        if (savedInstaceState != null) {
+            showDialog(
+                binding.editTitle.text.toString(),
+                binding.editText.text.toString()
+            )
+        }
     }
 
     override fun messaging(message: String) {
@@ -37,7 +43,6 @@ class EditNoteActivity : AppCompatActivity(), EditNote {
 
     private fun toolbarAction() = with(binding) {
         saveBtn.setOnClickListener {
-//            presenter?.saveNote(editTitle.text.toString(), editText.text.toString())
             showDialog(editTitle.text.toString(), editText.text.toString())
         }
         shareBtn.setOnClickListener {
