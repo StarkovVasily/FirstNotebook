@@ -10,6 +10,7 @@ import com.example.practice.R
 import com.example.practice.databinding.ActivityMainBinding
 import com.example.practice.fragments.info.InfoFragment
 import com.example.practice.fragments.list.ListFragment
+import com.example.practice.fragments.list.ListFragment.Companion.newInstance
 
 
 class MainActivity : AppCompatActivity(), MainView.Fragments {
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity(), MainView.Fragments {
         val bundle = Bundle().apply {
             putParcelable(TITLE_KEY, note)
         }
-        val fragManage = InfoFragment.newInstance()
+        val fragManage = InfoFragment.newInstance(note)
         fragManage.arguments = bundle
         supportFragmentManager
             .beginTransaction()

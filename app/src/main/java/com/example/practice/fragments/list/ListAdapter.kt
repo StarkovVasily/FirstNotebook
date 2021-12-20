@@ -30,8 +30,6 @@ class ListAdapter(private var note: List<NoteModel>, private val onClick: ((Note
         note = item
     }
 
-    fun getIdItem(position: Int) = note[position].id
-
     inner class ViewHolderList(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = RecyclerItemBinding.bind(item)
 

@@ -58,6 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/all_margin"
+                android:background="@color/white"
+                android:hint="@string/title"
                 android:textColor="@color/black"
                 android:textSize="@dimen/ttl_size"
                 app:layout_constraintStart_toStartOf="parent"
@@ -68,6 +70,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/all_margin"
+                android:background="@color/white"
+                android:gravity="start"
+                android:hint="@string/text"
                 android:textColor="@color/black"
                 android:textSize="@dimen/txt_size"
                 app:layout_constraintTop_toBottomOf="@+id/frag2_title" />
