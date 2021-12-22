@@ -8,15 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.practice.databinding.FragmentListBinding
+import com.example.practice.fragments.info.InfoFragment
 import com.example.practice.model.NoteDatabase
 import com.example.practice.presenter.MainPresenterImpl
-import com.example.practice.view.EditNoteActivity
 import com.example.practice.view.MainView
 import com.example.practice.view.ViewPagerActivity
 import com.example.practice.view.ViewPagerActivity.Constant.EXTRA_KEY
 
 
-class ListFragment : Fragment(), MainView.View {
+class ListFragment : Fragment() {
     private lateinit var binding: FragmentListBinding
     private lateinit var presenter: MainPresenterImpl
     private lateinit var adapter: ListAdapter
@@ -42,23 +42,22 @@ class ListFragment : Fragment(), MainView.View {
         }
         recycler.adapter = adapter
         buttonAdd.setOnClickListener {
-            requireActivity()
-                .startActivity(
-                    (Intent(
-                        activity?.baseContext,
-                        EditNoteActivity::class.java
-                    ))
-                )
+            (activity as? MainView.Fragments)?.openFrag(
+                InfoFragment.newInstance(),
+                true
+            )
+            (activity as? MainView.View)?.showSaveShare()
         }
     }
 
     override fun onResume() {
         super.onResume()
+        (activity as? MainView.View)?.hideSaveShare()
         updateData()
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    override fun updateData() {
+    private fun updateData() {
         adapter.updateData(presenter.noteData())
         adapter.notifyDataSetChanged()
     }
@@ -68,3 +67,4 @@ class ListFragment : Fragment(), MainView.View {
         fun newInstance() = ListFragment()
     }
 }
+

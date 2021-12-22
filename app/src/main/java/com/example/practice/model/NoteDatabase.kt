@@ -9,7 +9,7 @@ import com.example.practice.NoteModel
 
 @Database(entities = [NoteModel::class], version = 1)
 abstract class NoteDatabase : RoomDatabase() {
-    abstract fun noteDao(): NoteDAO
+    abstract fun noteDao(): NoteDao
 
     companion object {
         private var INSTANCE: NoteDatabase? = null

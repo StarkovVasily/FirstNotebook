@@ -1,5 +1,6 @@
 package com.example.practice.fragments.info
 
+
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +8,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.core.widget.addTextChangedListener
 import com.example.practice.NoteModel
-import com.example.practice.R
 import com.example.practice.databinding.FragmentInfoBinding
 import com.example.practice.model.NoteDatabase
 import com.example.practice.view.MainActivity.Constant.TITLE_KEY
-import com.example.practice.view.ViewPagerActivity
+import com.example.practice.view.Save
 
 
 class InfoFragment : Fragment(), Info.View {
@@ -40,29 +38,16 @@ class InfoFragment : Fragment(), Info.View {
             frag2Title.setText(item?.title)
             frag2Text.setText(item?.text)
             frag2Date.text = item?.date
-            frag2Title.addTextChangedListener { presenter.updateTitle(it?.toString().orEmpty()) }
-            frag2Text.addTextChangedListener { presenter.updateText(it?.toString().orEmpty()) }
         }
     }
 
-
     override fun onResume() {
         super.onResume()
-        (activity as? ViewPagerActivity)?.currentFragment = this
+        (activity as? Save)?.currentFragment = this
     }
 
     override fun save() {
-        AlertDialog.Builder(requireContext())
-            .setMessage(R.string.fragment_dialog_message)
-            .setPositiveButton(
-                R.string.positive
-            ) { _, _ ->
-                presenter.saveNote()
-            }.setNegativeButton(R.string.negative) { dialog, _ ->
-                dialog.dismiss()
-            }
-            .setCancelable(true)
-            .create().show()
+        presenter.save(binding.frag2Title.text.toString(), binding.frag2Text.text.toString())
     }
 
     override fun shareText(note: String) {
@@ -85,6 +70,8 @@ class InfoFragment : Fragment(), Info.View {
                 : InfoFragment = InfoFragment().apply {
             arguments = Bundle().apply { putParcelable(TITLE_KEY, note) }
         }
+
+        fun newInstance() = InfoFragment()
     }
 }
 

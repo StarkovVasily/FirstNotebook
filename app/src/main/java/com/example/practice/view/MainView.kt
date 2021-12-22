@@ -4,15 +4,13 @@ import androidx.fragment.app.Fragment
 import com.example.practice.NoteModel
 
 interface MainView {
-
-    interface View{
-        fun updateData()
+    interface View {
+        fun showSaveShare()
+        fun hideSaveShare()
     }
 
     interface Fragments {
-        fun openFrag(id: Int, f: Fragment)
+        fun openFrag(f: Fragment, toStack: Boolean)
         fun openInfoFragment(note: NoteModel)
-        fun shareFromFrag2(note: String)
-        fun messagingFromFrag2(message: String)
     }
 }

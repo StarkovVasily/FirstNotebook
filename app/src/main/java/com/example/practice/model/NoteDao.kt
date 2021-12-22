@@ -8,7 +8,7 @@ import androidx.room.Update
 import com.example.practice.NoteModel
 
 @Dao
-interface NoteDAO {
+interface NoteDao {
 
     @Query("SELECT * FROM notes")
     fun getNotes(): List<NoteModel>
