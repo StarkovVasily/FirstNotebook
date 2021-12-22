@@ -81,19 +81,6 @@ class MainActivity : AppCompatActivity(), MainView.Fragments, MainView.View, Sav
         }
     }
 
-    override fun openInfoFragment(note: NoteModel) {
-        val bundle = Bundle().apply {
-            putParcelable(TITLE_KEY, note)
-        }
-        val fragManage = InfoFragment.newInstance(note)
-        fragManage.arguments = bundle
-        supportFragmentManager
-            .beginTransaction()
-            .addToBackStack(null)
-            .replace(R.id.fragContainer, fragManage)
-            .commit()
-    }
-
     companion object Constant {
         const val TITLE_KEY = "title"
         const val CREATE = "createNote"

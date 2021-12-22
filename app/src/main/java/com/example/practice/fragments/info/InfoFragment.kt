@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.practice.NoteModel
+import com.example.practice.R
 import com.example.practice.databinding.FragmentInfoBinding
 import com.example.practice.model.NoteDatabase
 import com.example.practice.view.MainActivity.Constant.TITLE_KEY
@@ -27,7 +28,7 @@ class InfoFragment : Fragment(), Info.View {
         if (arguments != null && arguments?.containsKey(TITLE_KEY) == true) {
             item = arguments?.getParcelable(TITLE_KEY) as? NoteModel?
         }
-        presenter = InfoFragPresenterImpl(this, item, NoteDatabase.getInstance(requireContext()))
+        presenter = InfoFragPresenterImpl(this, NoteDatabase.getInstance(requireContext()))
         binding = FragmentInfoBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -46,8 +47,15 @@ class InfoFragment : Fragment(), Info.View {
         (activity as? Save)?.currentFragment = this
     }
 
-    override fun save() {
-        presenter.save(binding.frag2Title.text.toString(), binding.frag2Text.text.toString())
+    override fun save() = with(binding) {
+        if (frag2Title.text.isEmpty() && frag2Text.text.isEmpty())
+            Toast.makeText(requireContext(), R.string.empty_note_alert, Toast.LENGTH_SHORT).show()
+        else
+            presenter.save(
+                frag2Title.text.toString(),
+                frag2Text.text.toString(),
+                item?.id?.toInt()
+            )
     }
 
     override fun shareText(note: String) {

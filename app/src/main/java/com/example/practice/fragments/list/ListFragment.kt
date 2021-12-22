@@ -32,7 +32,6 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(binding) {
         super.onViewCreated(view, savedInstanceState)
         presenter = MainPresenterImpl(
-            requireActivity() as? MainView.Fragments?,
             NoteDatabase.getInstance(requireContext())
         )
         adapter = ListAdapter(presenter.noteData()) {

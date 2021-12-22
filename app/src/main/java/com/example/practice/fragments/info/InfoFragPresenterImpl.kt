@@ -6,7 +6,6 @@ import java.util.*
 
 class InfoFragPresenterImpl(
     var view: Info.View?,
-    private var note: NoteModel?,
     private val db: NoteDatabase
 ) : InfoPresenter {
 
@@ -20,15 +19,11 @@ class InfoFragPresenterImpl(
         }
     }
 
-    override fun save(title: String, text: String) {
-        if (note?.id != null)
-            note?.let {
-                it.title = title
-                it.text = text
-                db.noteDao().updateNote(it)
-            }
+    override fun save(title: String, text: String, id:Int?) {
+        val date = Calendar.getInstance().time
+        if (id!=null)
+            db.noteDao().updateNote(NoteModel(id = id.toLong(), title = title, text = text, date = date.toString()))
         else {
-            val date = Calendar.getInstance().time
             if (title.isEmpty() && text.isEmpty()) view?.showMessage("Заметка пуста")
             else
                 db.noteDao().insert(NoteModel(title = title, text = text, date = date.toString()))

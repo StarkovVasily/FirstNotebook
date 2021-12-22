@@ -15,7 +15,7 @@ import com.example.practice.viewPager.ViewPagerAdapter
 class ViewPagerActivity : AppCompatActivity(), ViewPagerView, Save {
 
     private lateinit var binding: ActivityViewPagerBinding
-    private lateinit var presenter: VPagerPresenter
+    private lateinit var presenter: MainPresenter
     override var currentFragment: InfoFragment? = null
     private var adapter: ViewPagerAdapter = ViewPagerAdapter(this, emptyList())
 
@@ -23,7 +23,7 @@ class ViewPagerActivity : AppCompatActivity(), ViewPagerView, Save {
         super.onCreate(savedInstanceState)
         binding = ActivityViewPagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        presenter = VPagerPresenterImpl(NoteDatabase.getInstance(this))
+        presenter = MainPresenterImpl(NoteDatabase.getInstance(this))
         adapter = ViewPagerAdapter(this, presenter.noteData())
         val id = intent.getLongExtra(EXTRA_KEY, 0)
         initViewPager(id.toInt() - 1)
