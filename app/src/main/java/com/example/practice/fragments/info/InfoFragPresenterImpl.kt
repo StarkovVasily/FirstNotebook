@@ -1,5 +1,6 @@
 package com.example.practice.fragments.info
 
+import android.util.Log
 import com.example.practice.NoteModel
 import com.example.practice.model.NoteDatabase
 import java.util.*
@@ -19,14 +20,20 @@ class InfoFragPresenterImpl(
         }
     }
 
-    override fun save(title: String, text: String, id:Int?) {
+    override fun save(title: String, text: String, id: Int?) {
         val date = Calendar.getInstance().time
-        if (id!=null)
-            db.noteDao().updateNote(NoteModel(id = id.toLong(), title = title, text = text, date = date.toString()))
-        else {
-            if (title.isEmpty() && text.isEmpty()) view?.showMessage("Заметка пуста")
-            else
-                db.noteDao().insert(NoteModel(title = title, text = text, date = date.toString()))
+        id?.let {
+            db.noteDao().updateNote(
+                NoteModel(
+                    id = it.toLong(),
+                    title = title,
+                    text = text,
+                    date = date.toString()
+                )
+            )
         }
+        if (title.isEmpty() && text.isEmpty()) view?.showMessage("Заметка пуста")
+        else
+            db.noteDao().insert(NoteModel(title = title, text = text, date = date.toString()))
     }
 }

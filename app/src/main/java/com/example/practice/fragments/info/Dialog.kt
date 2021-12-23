@@ -7,11 +7,11 @@ import androidx.fragment.app.DialogFragment
 import com.example.practice.R
 import com.example.practice.view.Save
 
-class Dialog(private var message: Int) : DialogFragment() {
+class Dialog : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             AlertDialog.Builder(it).apply {
-                setMessage(message)
+                setMessage(R.string.dialog_message)
                 setNegativeButton(R.string.negative, null)
                 setPositiveButton(R.string.positive) { _, _ ->
                     (activity as? Save)?.save()

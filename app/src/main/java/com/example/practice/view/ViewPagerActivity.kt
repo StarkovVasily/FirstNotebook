@@ -37,7 +37,7 @@ class ViewPagerActivity : AppCompatActivity(), ViewPagerView, Save {
 
     private fun toolbarActions() = with(binding) {
         saveBtnPager.setOnClickListener {
-            Dialog(R.string.fragment_dialog_message).show(
+            Dialog().show(
                 supportFragmentManager, INFO_TAG
             )
         }

@@ -13,6 +13,5 @@
     <string name="dialog_message">Сохранить заметку?</string>
     <string name="positive">Да</string>
     <string name="negative">Нет</string>
-    <string name="fragment_dialog_message">Сохранить изменения?</string>
     <string name="empty_note_alert">Заметка пуста</string>
 </resources>
