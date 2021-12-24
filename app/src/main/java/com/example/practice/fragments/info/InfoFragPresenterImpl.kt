@@ -31,9 +31,10 @@ class InfoFragPresenterImpl(
                     date = date.toString()
                 )
             )
+        } ?: run {
+            if (title.isEmpty() && text.isEmpty()) view?.showMessage("Заметка пуста")
+            else
+                db.noteDao().insert(NoteModel(title = title, text = text, date = date.toString()))
         }
-        if (title.isEmpty() && text.isEmpty()) view?.showMessage("Заметка пуста")
-        else
-            db.noteDao().insert(NoteModel(title = title, text = text, date = date.toString()))
     }
 }
