@@ -8,11 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.practice.NoteModel
 import com.example.practice.R
 import com.example.practice.databinding.RecyclerItemBinding
-import com.example.practice.model.ListModel.notes
-import com.example.practice.presenter.MainPresenterImpl
 
-
-class ListAdapter(private val onClick: ((NoteModel) -> Unit)) :
+class ListAdapter(private var note: List<NoteModel>, private val onClick: ((NoteModel) -> Unit)) :
     RecyclerView.Adapter<ListAdapter.ViewHolderList>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderList {
@@ -24,10 +21,14 @@ class ListAdapter(private val onClick: ((NoteModel) -> Unit)) :
     }
 
     override fun onBindViewHolder(holder: ViewHolderList, position: Int) {
-        holder.bind(notes[position])
+        holder.bind(note[position])
     }
 
-    override fun getItemCount(): Int = notes.size
+    override fun getItemCount(): Int = note.size
+
+    fun updateData(item: List<NoteModel>) {
+        note = item
+    }
 
     inner class ViewHolderList(item: View) : RecyclerView.ViewHolder(item) {
         private val binding = RecyclerItemBinding.bind(item)

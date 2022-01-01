@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.EditNoteActivity"
+            android:name=".view.ViewPagerActivity"
             android:exported="true" />
     </application>
 

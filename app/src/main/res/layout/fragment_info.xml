@@ -1,86 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:background="@color/white">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/frag2_toolbar"
-        style="@style/Widget.MaterialComponents.ActionBar.Primary"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/green_200">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <EditText
+            android:id="@+id/frag2_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:background="@color/white"
+            android:hint="@string/title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/ttl_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/share_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/toolbar_between"
-                android:background="@color/green_200"
-                android:src="@drawable/baseline_share_white_36"
-                app:layout_constraintEnd_toStartOf="@+id/save_btn"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
-
-            <ImageButton
-                android:id="@+id/save_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/green_200"
-                android:foregroundGravity="right"
-                android:src="@drawable/baseline_save_white_36"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.appbar.MaterialToolbar>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <EditText
+            android:id="@+id/frag2_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:background="@color/white"
+            android:gravity="start"
+            android:hint="@string/text"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size"
+            app:layout_constraintTop_toBottomOf="@+id/frag2_title" />
 
-            <TextView
-                android:id="@+id/frag2_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/all_margin"
-                android:textColor="@color/black"
-                android:textSize="@dimen/ttl_size"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/frag2_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/all_margin"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_size"
+            app:layout_constraintTop_toBottomOf="@+id/frag2_text" />
 
-            <TextView
-                android:id="@+id/frag2_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/all_margin"
-                android:textColor="@color/black"
-                android:textSize="@dimen/txt_size"
-                app:layout_constraintTop_toBottomOf="@+id/frag2_title" />
-
-            <TextView
-                android:id="@+id/frag2_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/all_margin"
-                android:textColor="@color/black"
-                android:textSize="@dimen/txt_size"
-                app:layout_constraintTop_toBottomOf="@+id/frag2_text" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
