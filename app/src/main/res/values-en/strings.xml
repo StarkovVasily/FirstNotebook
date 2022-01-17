@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="text">Text</string>
+    <string name="title">Title</string>
+    <string name="save_btn">Save</string>
+    <string name="share_btn">Share</string>
+    <string name="add_button">Add note</string>
+    <string name="back">Back</string>
+    <string name="saved">Changes saved</string>
+    <string name="dialog_message">Save note?</string>
+    <string name="positive">Yes</string>
+    <string name="negative">No</string>
+    <string name="empty_note_alert">Note is empty</string>
+</resources>

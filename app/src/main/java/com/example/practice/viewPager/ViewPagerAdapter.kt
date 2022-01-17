@@ -11,7 +11,6 @@ import com.example.practice.fragments.info.InfoFragment
 class ViewPagerAdapter(fragment: FragmentActivity, private val note: List<NoteModel>) :
     FragmentStateAdapter(fragment) {
 
-
     override fun getItemCount(): Int = note.size
     override fun createFragment(position: Int): Fragment =
         InfoFragment.newInstance(note[position])

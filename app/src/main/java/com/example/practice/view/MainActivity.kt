@@ -14,6 +14,7 @@ import com.example.practice.fragments.list.ListFragment
 
 class MainActivity : AppCompatActivity(), MainView.Fragments, MainView.View, Save {
     private lateinit var binding: ActivityMainBinding
+
     override var currentFragment: InfoFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
