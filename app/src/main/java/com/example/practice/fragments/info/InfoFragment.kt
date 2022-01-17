@@ -3,15 +3,18 @@ package com.example.practice.fragments.info
 
 import android.content.Intent
 import android.os.Bundle
+
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import com.example.practice.NoteModel
 import com.example.practice.R
 import com.example.practice.databinding.FragmentInfoBinding
 import com.example.practice.model.NoteDatabase
+import com.example.practice.model.NoteRepositoryImpl
 import com.example.practice.view.MainActivity.Constant.TITLE_KEY
 import com.example.practice.view.Save
 
@@ -19,7 +22,8 @@ import com.example.practice.view.Save
 class InfoFragment : Fragment(), Info.View {
     private lateinit var binding: FragmentInfoBinding
     private var item: NoteModel? = null
-    private lateinit var presenter: InfoFragPresenterImpl
+
+    private lateinit var vm: InfoFragViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,18 +32,22 @@ class InfoFragment : Fragment(), Info.View {
         if (arguments != null && arguments?.containsKey(TITLE_KEY) == true) {
             item = arguments?.getParcelable(TITLE_KEY) as? NoteModel?
         }
-        presenter = InfoFragPresenterImpl(this, NoteDatabase.getInstance(requireContext()))
         binding = FragmentInfoBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        vm = ViewModelProvider(
+            this,
+            InfoFragViewModelFactory(NoteRepositoryImpl(requireContext()))
+        ).get(InfoFragViewModel::class.java)
         binding.apply {
             frag2Title.setText(item?.title)
             frag2Text.setText(item?.text)
             frag2Date.text = item?.date
         }
+        observeForShare()
     }
 
     override fun onResume() {
@@ -51,10 +59,10 @@ class InfoFragment : Fragment(), Info.View {
         if (frag2Title.text.isEmpty() && frag2Text.text.isEmpty())
             Toast.makeText(requireContext(), R.string.empty_note_alert, Toast.LENGTH_SHORT).show()
         else
-            presenter.save(
-                frag2Title.text.toString(),
-                frag2Text.text.toString(),
-                item?.id?.toInt()
+            vm.saveNote(
+                item?.id?.toInt(),
+                observeTitle(),
+                observeText(),
             )
     }
 
@@ -66,11 +74,34 @@ class InfoFragment : Fragment(), Info.View {
     }
 
     override fun share() {
-        presenter.shareNote(item?.title.toString(), item?.text.toString())
+        vm.shareNote(item?.title.toString(), item?.text.toString())
     }
 
     override fun showMessage(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun observeTitle(): String {
+        var title = binding.frag2Title.text.toString()
+        vm.noteTitle.observe(viewLifecycleOwner) {
+            title = it
+        }
+        return title
+    }
+
+    private fun observeText(): String {
+        var text = binding.frag2Text.text.toString()
+        vm.noteText.observe(viewLifecycleOwner) {
+            text = it
+        }
+        return text
+    }
+
+    private fun observeForShare() {
+        vm.noteForShare.observe(viewLifecycleOwner) {
+            if (it.isEmpty()) showMessage(getString(R.string.empty_note_alert))
+            else shareText(it)
+        }
     }
 
     companion object {
@@ -82,5 +113,7 @@ class InfoFragment : Fragment(), Info.View {
         fun newInstance() = InfoFragment()
     }
 }
+
+
 
 

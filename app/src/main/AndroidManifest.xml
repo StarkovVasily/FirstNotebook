@@ -12,7 +12,6 @@
         <activity
             android:name=".view.AboutActivity"
             android:exported="false"
-            android:label="@string/title_activity_about"
             android:theme="@style/Theme.Practice.NoActionBar" />
         <activity
             android:name=".view.MainActivity"

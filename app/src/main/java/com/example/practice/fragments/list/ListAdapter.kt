@@ -1,15 +1,20 @@
 package com.example.practice.fragments.list
 
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practice.NoteModel
 import com.example.practice.R
 import com.example.practice.databinding.RecyclerItemBinding
 
-class ListAdapter(private var note: List<NoteModel>, private val onClick: ((NoteModel) -> Unit)) :
+class ListAdapter(
+    private var note: List<NoteModel>,
+    private val onClick: ((NoteModel) -> Unit)
+) :
     RecyclerView.Adapter<ListAdapter.ViewHolderList>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderList {
@@ -41,3 +46,4 @@ class ListAdapter(private var note: List<NoteModel>, private val onClick: ((Note
         }
     }
 }
+

@@ -4,27 +4,34 @@ package com.example.practice.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import com.example.practice.NoteModel
 import com.example.practice.R
 import com.example.practice.databinding.ActivityViewPagerBinding
 import com.example.practice.fragments.info.Dialog
 import com.example.practice.fragments.info.InfoFragment
-import com.example.practice.model.NoteDatabase
-import com.example.practice.presenter.*
+import com.example.practice.model.NoteRepositoryImpl
+import com.example.practice.viewModel.PagerViewModel
+import com.example.practice.viewModel.PagerViewModelFactory
 import com.example.practice.viewPager.ViewPagerAdapter
 
 class ViewPagerActivity : AppCompatActivity(), ViewPagerView, Save {
 
     private lateinit var binding: ActivityViewPagerBinding
-    private lateinit var presenter: MainPresenter
     override var currentFragment: InfoFragment? = null
     private var adapter: ViewPagerAdapter = ViewPagerAdapter(this, emptyList())
+    private lateinit var vm: PagerViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityViewPagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        presenter = MainPresenterImpl(NoteDatabase.getInstance(this))
-        adapter = ViewPagerAdapter(this, presenter.noteData())
+        vm = ViewModelProvider(
+            this,
+            PagerViewModelFactory(NoteRepositoryImpl(this))
+        ).get(PagerViewModel::class.java)
+        adapter = ViewPagerAdapter(this, vm.noteData())
         val id = intent.getLongExtra(EXTRA_KEY, 0)
         initViewPager(id.toInt() - 1)
         toolbarActions()
